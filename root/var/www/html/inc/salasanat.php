@@ -2,10 +2,10 @@
 
 date_default_timezone_set("Europe/Helsinki");
 
-$dbhost = getenv("MYSQL_HOST");
-$dbuser = getenv("MYSQL_USER");
-$dbpass = getenv("MYSQL_PASSWORD");
-$dbkanta = getenv("MYSQL_DATABASE");
+$dbhost = getenv("MARIADB_HOST");
+$dbuser = getenv("MARIADB_USER");
+$dbpass = getenv("MARIADB_PASS");
+$dbkanta = getenv("MARIADB_DATABASE");
 
 $palvelin = getenv("SERVER");
 

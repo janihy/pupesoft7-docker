@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  pupesoft:
+    build:
+      context: .
+    depends_on:
+      - "mariadb"
+    links:
+      - "mariadb"
+    env_file: "pupesoft.env"
+    ports:
+      - "8080:80"
+    networks:
+      - pupesoft-network
+
+  mariadb:
+    image: "mariadb:11.7"
+    volumes:
+      - "./pupesoft7/alkudata_pupesoft7.sql:/docker-entrypoint-initdb.d/alkudata_pupesoft7.sql"
+      - "./data:/var/lib/mysql"
+    env_file: "pupesoft.env"
+    networks:
+      - pupesoft-network
+
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    depends_on:
+      - "mariadb"
+    links:
+      - "mariadb"
+    environment:
+      PMA_HOST: "mariadb"
+      PMA_PORT: "3306"
+      UPLOAD_LIMIT: "256M"
+    ports:
+      - "8081:80"
+    networks:
+      - pupesoft-network
+
+networks:
+  pupesoft-network:
