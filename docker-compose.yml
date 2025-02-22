@@ -1,6 +1,6 @@
 services:
   pupesoft:
-    image: localhost/pupesoft7
+    image: pupesoft7
     depends_on:
       - "mariadb"
     env_file: "pupesoft.env"
