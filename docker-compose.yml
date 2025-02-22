@@ -1,11 +1,8 @@
-version: "3.8"
 services:
   pupesoft:
     build:
       context: .
     depends_on:
-      - "mariadb"
-    links:
       - "mariadb"
     env_file: "pupesoft.env"
     ports:
@@ -25,8 +22,6 @@ services:
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     depends_on:
-      - "mariadb"
-    links:
       - "mariadb"
     environment:
       PMA_HOST: "mariadb"
